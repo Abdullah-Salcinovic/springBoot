@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<link th:href="@{/css/style.css}" rel="stylesheet">
+<body>
+    <h2>Edit Loan</h2>
+    <form th:action="@{/loans/update/{id}(id=${loan.id})}" th:object="${loan}" method="post">
+        <select th:field="*{user.id}" required>
+            <option th:each="user : ${users}" th:value="${user.id}" th:text="${user.username}"></option>
+        </select>
+        <select th:field="*{book.id}" required>
+            <option th:each="book : ${books}" th:value="${book.id}" th:text="${book.title}"></option>
+        </select>
+        <input type="date" th:field="*{loanDate}" required />
+        <input type="date" th:field="*{returnDate}" />
+        <button type="submit">Update</button>
+    </form>
+</body>
+</html>
